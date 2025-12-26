@@ -1,0 +1,274 @@
+  Run on edatools-server2.iiitd.edu.in (Linux 2.6.32-754.35.1.el6.x86_64)
+
+
+***** SYSTEM INFORMATION ...
+
+*** User  : anvesh25104@edatools-server2.iiitd.edu.in
+*** OS    : Red Hat Enterprise Linux Server release 6.10 (Santiago) [VCO = aol]
+*** CPU   :
+    Intel(R) Xeon(R) Gold 6354 CPU @ 3.00GHz
+    Number of physical processors     : 2
+    Hyper-Threading Technology        : enabled
+    Number of cpu cores               : 36
+    Number of logical processors      : 72
+*** Freq  : 3600.000MHz
+*** Cache : 39936 KB
+*** MEM   : 528955884 kB
+*** Date  : Sat Nov  8 00:57:38 2025
+
+/mentor/AMS/aol/bin/eldo_64.exe -i multibit_tspc.wdb 
+
+
+***** PRE-PROCESSING ...
+
+ERROR 3013: In file "./multibit_tspc.wdb" line 723:
++   Crypted file is corrupted or key is outdated.
+1******* 8-Nov-25 *******  ELDO 12.2 (64 bits)  (v7.8_1.1)  *******00:57:38******
+
+0.wdb
+
+0****     INPUT LISTING                                               
+
+0***********************************************************************
+    2  A 5 U WDB 690E4229032D.03.7F.00.00.01.00.70.6D 1 1 0 0
+ERROR  252: In file "./multibit_tspc.wdb" line 2:
++   OBJECT "A": Pins are missing for this device: 1 found, 3 expected
+    3  P "WDB_VERSION" "2"
+    4  
+    6  •**ST¦©M2    7  •**ST¦	    8  	í¼kåË“h rq±¿tÉ¶yÛÊÉu÷JCùAPOlø ÙïÅ&ERROR 25: In file "./multibit_tspc.wdb" line 9:
++   Line not consistent with language syntax.
+ERROR 25: In file "./multibit_tspc.wdb" line 3:
++   Line not consistent with language syntax.
+    9  ŞERROR 25: In file "./multibit_tspc.wdb" line 10:
++   Line not consistent with language syntax.
+   10  0BÿÌjªJÕT&’‚5W¸j¯pÕ^àª½¿#U{Øò½Ùıáyí   11  •ş)ş*SşT§ş	#E)Q`y–YbPşşşEş¿ş¤şGşş-şZ ş“¼À±şaêÑ¤Í$C '-:TP{÷ş™şMşşâşÄşZşoş	åşËş'•şO+şi°ş95#D )S`yÃâş3ş'şş7şşş<ş,vş=\¾¯ş_şXş“ü,ZyñşãşaşÁş	‚şş&şLşd#C!%;576k×ş­şş*şŸş®şWş ş}ş5«şkXşgMº¯ş\şìªşQ':,XgˆÇßşLş ş¾şíşÚşİşºş#sşFæşŒ   12  •ş)ş*Sş
+ERROR 25: In file "./multibit_tspc.wdb" line 13:
++   Line not consistent with language syntax.
+   13  #ERROR 25: In file "./multibit_tspc.wdb" line 14:
++   Line not consistent with language syntax.
+   14  )0<K-1(@şş£şàşÒş£şHşş-şIŞ_Y±tiRg	"ERROR 25: In file "./multibit_tspc.wdb" line 15:
++   Line not consistent with language syntax.
+   15  *(>{Ìş'şERROR 25: In file "./multibit_tspc.wdb" line 16:
++   Line not consistent with language syntax.
+   16  )0=aqšşşş›şÈşşş<ş®^X°¬É~-<yòş0şaşÁş	‚şş&ş3	!5l×şş–şÏşWş,şş   17  HY-C******)*****D***Z******>**{****	*F***5*J>**|***!*Q*B6****Z*
+ERROR 25: In file "./multibit_tspc.wdb" line 18:
++   Line not consistent with language syntax.
+Warning  65: In file "./multibit_tspc.wdb" line 17:
++   Probably missing surrounding ' or {} at or near *F***5*J>**|***!*Q*B6****Z*
++   Eldo will consider that as an expression, which is may be not what is expected.
+Warning  65: In file "./multibit_tspc.wdb" line 17:
++   Probably missing surrounding ' or {} at or near *F***5*J>**|***!*Q*B6****Z*
++   Eldo will consider that as an expression, which is may be not what is expected.
+ERROR 920: In file "./multibit_tspc.wdb" line 17:
++   Unable to parse expression *F***5*J>**|***!*Q*B6****Z*. 
++   Expression starts by an operator in *F***5*J>**|***!*Q*B6****Z*
+
+   18  A¡ERROR 25: In file "./multibit_tspc.wdb" line 19:
++   Line not consistent with language syntax.
+   19  A€Lg[qË¦é·ÒÇ·ÒÇ   20  X*(8*****A*%D5****Y*
+ERROR 25: In file "./multibit_tspc.wdb" line 21:
++   Line not consistent with language syntax.
+   21  ÜÈšş5‘4ük"gøÖDÎñ¬‰ãY:6¿³‘ıáyíERROR 25: In file "./multibit_tspc.wdb" line 22:
++   Line not consistent with language syntax.
+   22  A¡ERROR 25: In file "./multibit_tspc.wdb" line 23:
++   Line not consistent with language syntax.
+   23  @€Lh[qË×–·Ò•Y·Ò•Y   24  Ô~Ü®æı¹]Ëûr»–·Òn‹»NÕ%ŸªK>T–|8©,øpRYğß'[œà3:^¼
+   25  Ì”¹qóDñ0ğéšÕÜõş¿ğ½v¥<ZëqDERROR 25: In file "./multibit_tspc.wdb" line 26:
++   Line not consistent with language syntax.
+   26  àX7j0Î™kt•`újdÎådˆ¹]t•®+är\WÈä[«…÷Oü’Cê¾ûãôûÇé÷ï$»F~û©¨œÉSQ9’¦¢s$MDæGÒI‘·u‡ş¿ğ½v¥pÅ± óœ5îùA<ó’«áE@§rŠNâÇ›	–Ÿ¾¯ML(üG! (V«ïÉä6åCóüÃéN§R¼§i4²Òi!e¤ÒBÈI¤…’¢•ã¡‚BmÊxhs”ğĞåäD±zcW«Vïğ]¸cƒ«Ç	XcÁAÅÇ‚ƒŠ?f“Í(ş5šOük4øÖi ñ¬Òu_Gïş¿ğ½v¤‹¾›tÅ?ç€Ü™Ğ'7ç§Åİ£õ™ÒFIÉ)Æ«±×C~ÛPÙ«£²WGd®ŒÈ-]ÈD°€2,Æ ¢á]’Ïü›n‹ëğüèz­tF-LÀÛ#f%¶FÌK•›ë§Kñ›ERROR 25: In file "./multibit_tspc.wdb" line 27:
++   Line not consistent with language syntax.
+   27  +x<Vğx#‰Vom_I3‚¹cÛ•IP…
+   28  J***\**NERROR 25: In file "./multibit_tspc.wdb" line 29:
++   Line not consistent with language syntax.
+ERROR 25: In file "./multibit_tspc.wdb" line 28:
++   Line not consistent with language syntax.
+   29  (   31  ÿ   32  ÿ   33  C*   34  ÿÿÿ÷ERROR 25: In file "./multibit_tspc.wdb" line 33:
++   Line not consistent with language syntax.
+   37  Q*
+   38  ÑfWk.0ØxÖ|T#Ÿ×Ş.û·¡¾„àqI{¼S°Ü˜_MOŒÄ
+ERROR 25: In file "./multibit_tspc.wdb" line 37:
++   Line not consistent with language syntax.
+   39  JC*
+ERROR 25: In file "./multibit_tspc.wdb" line 39:
++   Line not consistent with language syntax.
+   40  PT*?F**"U_R*L= *BA** ^*Q**T*****Q>*** ****GE=*2*'* *
+ERROR 25: In file "./multibit_tspc.wdb" line 41:
++   Line not consistent with language syntax.
+ERROR  254: In file "./multibit_tspc.wdb" line 40:
++   OBJECT "PT*?F**"U_R*L": Unknown parameter ****GE
+Warning  65: In file "./multibit_tspc.wdb" line 40:
++   Probably missing surrounding ' or {} at or near *2*
++   Eldo will consider that as an expression, which is may be not what is expected.
+ERROR 920: In file "./multibit_tspc.wdb" line 40:
++   Unable to parse expression *2*  . 
++   Expression starts by an operator in *2*
+
+ERROR  254: In file "./multibit_tspc.wdb" line 40:
++   OBJECT "PT*?F**"U_R*L": Unknown parameter *
+Warning  65: In file "./multibit_tspc.wdb" line 40:
++   Probably missing surrounding ' or {} at or near *
++   Eldo will consider that as an expression, which is may be not what is expected.
+ERROR 920: In file "./multibit_tspc.wdb" line 40:
++   Unable to parse expression *. 
++   error near sign '-' in *
+
+   41  $JåP‚ÔÄ€ÕM„mÔWÜçu®íÆQ	‹KcÀÍšµßPÇ‘’p=¢/ŒPıoŒgcJ¢Ğ«Ü\vQ×'NÌıîê³%ÌÔ[ğğêÁ`ß€ö=…ïÖğçl$Á×¢Õ´~úUPœÛ÷qØŸ«ZôŒÓPT”íPv7»Ce:páÄé–Ÿ§ÁÖÏÌÉ8ä€¸¬£au÷âïGª±ğ   42   ˜kàøëÃ}k[=æ@x¶u#’ºøF§%éJËÓ·•BŠp%(±Â{¡ìĞfÜYCÕGaU˜ë5˜i‰¬ÃÄ[——ûÙ¯¬àŒWBıS•7=Ë‰?*¯JİxYˆ2µ£1¿éİí2OI‰ï¢é“–^8¹ÌG_EÂG å^ñ¼WÕÄm9a2Ô±¹`¿?ÄğÌrÚ+‘*/×£Œ«Mfé˜›JWMÆ£¡)ËERROR 25: In file "./multibit_tspc.wdb" line 43:
++   Line not consistent with language syntax.
+   43  'Él4ÍËĞ¢n>àÔ?Ÿw¡   44  ÿÿü{ÿÿÿÇ   46  ÿÿü{ÿÿÿÇ   48  Îî‡ŒÕ'şØPô½R×úy$±¬ÕËQ‚<wúŸRÀbr¶ÓëÈ{t‹û•·+¿ÌV@— “î”/PhX¶ßÜ¬V|_ÍÄyq· ¢ßÖ÷¬u…<08 iÉü“ÖêÙùşB§é“ŒÀY/z¡†¢ôV§ıÖ‡|/	=?_ã%Îh~×}3sHkXá‡PÈ‹Ş¡æ`xä‡rqõª¤è…	/\N„`?ø“o¥8Â9ˆáÒ­´`1m^Î[?¹úoàÕ¨z–vQ×öçñR£äuÉPéF\Bk±ÿ@I-¡‚¨¹66•+ğŒD­ãÅwÚ"goÄìÂÀŸx¶™:Í,ÕÌüUír^ÖiåĞmö/~ë~‰ªd3ÌÌ—øÑC
+   49  øŒqK¢“¡Ÿ’›á-üŠiŠß·ŒUbÊû„ÇÁ':Ùş7ö¸=9óØ1£òËTÂèxWï»f®<W!®éJî‘4ªlß©~WÌS€WyÁšßKÑÂTÕì-8¡A×ûÈh^½-ÒQ(Á½Oºk¨ÄP#™p:s¾Ñ]ÚY˜Kä²İ?g¬#¼
+   50  ºÖ™‚S6¥ĞÌÑšoWIƒi©mûNÊ~óI‰Cdªf¸‚Ì˜bzC
+   51  U***************L**C***K **ZD***1**E***E**2*********   52  ÿÿÿî   53  –ÿÿüHÿÿØÿÿÊÿÿ¥¡ÿÿc•ÿÿJoÿÿYÙÿÿ”*ÿÿ?ÿşÆ>ÿÿ2ÂÿÿÈÿÿú³   54  –ÿÿüIÿÿØÿÿÊÿÿ¥¢ÿÿc”ÿÿJoÿÿYØÿÿ”*ÿÿ@ÿşÆ=ÿÿ2ÂÿÿÈ
+   55  DMX*O6***Y*O********`*)P**
+ERROR 25: In file "./multibit_tspc.wdb" line 56:
++   Line not consistent with language syntax.
+ERROR 25: In file "./multibit_tspc.wdb" line 55:
++   Line not consistent with language syntax.
+   56  o ¯~&èÄyg‡0pà,èVØu÷É›*ERROR 25: In file "./multibit_tspc.wdb" line 57:
++   Line not consistent with language syntax.
+   57  )Áü\Ú0«#7_3¨ÏKC&ë»¼ìü?ä|äPß½ñYæ•û€İ¦O>VGøxp#{Ø¤2‰»¥nßR4ák%6öóG[s   58  úè¬ 8Ù)ú…*ã­ÍşxMğªSl`ÆŞ8³n«{ ùü“Ö‹¡g¢Ïú„êX™älz””’_8A“|½ÿô(F!èbV¸@Ú”FŠ·OÄÜ†+P ß#WfßU>-¥4-Ë¹‚GüE‡
+   59  ‹ï÷:Ò·`¶´ûÁC½´´wkÙ¢rºûº˜wQËÌ>²Û®åC½‹èRRÌ \NÓÇ¥M±£+0Å¶(şwé@rlÌ—ZOHV×<ÚÆ‚lÔKa_BÁLi~(š,âTu~-AƒˆÆ‡Í'n_ôáéøIY/³ŞYgà ]:!Ë
+   60  ‚ ¿uxì`Øêkû¦ÊfúQ™pŠwé0ìº¯=q   61  í—‡Ë7^Ê¦˜ åáğüû0şi•´Äç	jïkÅÂ
+ERROR 25: In file "./multibit_tspc.wdb" line 62:
++   Line not consistent with language syntax.
+   62  7³wxè=7¹U~VçÎ   63  Ã^E±ÊDÇ¹
+   64  «FªœÖ™÷µìl²%èàğeå—Ê¸©{=”[ºÆ—8¡våœùKQ´êkƒŸÖŸª7¶pÊ¥•¨g«ú|EpÅƒtûøiúDBé‡ç+	–<­\Ù@bfvü€_ğ|êˆï¨Ğk?¨ÆÂkÊ×š…&~nÓZ‰	ÁÃ
+   65  B¥BJ™Y³(é*²ñI²õ©MF9KÜ‹Mß~‚­şÎı‹ü¨M??)×¼¾ê~Ğ¤%…æYÜT
+   66  –ÿÿüIÿÿØÿÿÊÿÿ¥¢ÿÿc”ÿÿJoÿÿYØÿÿ”*ÿÿ@ÿşÆ=ÿÿ2ÂÿÿÈ
+   67  –ÿÿüIÿÿØÿÿÊÿÿ¥¢ÿÿc”ÿÿJoÿÿYØÿÿ”*ÿÿ@ÿşÆ=ÿÿ2ÂÿÿÈ
+   68  ­@ş=?5<¾¨¬ïÊHEçZûM¼L~˜Jg	Æ¡î—¦Ni'T:ŠqÅ¥Z¨¢ü)aÖ`›/9Ï ¸còò}uHøLB_…
+ERROR 25: In file "./multibit_tspc.wdb" line 69:
++   Line not consistent with language syntax.
+ERROR  254: In file "./multibit_tspc.wdb" line 65:
++   OBJECT "B¥BJ": Unknown parameter Y³
+   69  •Ï½   70  I¼ªœÁü÷¶…²&À„ğft˜áQÆ«`{_–F–© nç¸¸™ëş²oşÏ™îz \ŸÀ¿SíZ¬½ƒ>Œ“âtm¶TúÜœ…‰Ù–˜'¸,_ëÑÄi
+   71  ‹}¤Ã!öÆZØ®”ŞÇ'?G×XÅ~->ˆîO.Ã"¸‹bF€Ç³'
+ERROR 25: In file "./multibit_tspc.wdb" line 72:
++   Line not consistent with language syntax.
+ERROR 54: In file "./multibit_tspc.wdb" line 70:
++   Syntax error parsing "I¼ª: Found ˜ while expecting a REAL value".
+ERROR  212: In file "./multibit_tspc.wdb" line 70:
++   OBJECT "I¼ª": Unknown signal type áQÆ«`
+   72  &²´¿²B*mEngÛzqMŞè‚­şÌ‹û¤eR  497  
+  573  
+  634  
+  642  
+  644  
+  728  
+  737  
+  740  
+  743  
+  823  
+ 1016  
+ 1018  
+ 1139  
+ 1215  
+ 1467  
+ 1488  
+ 1601  
+ 1669  
+ 2296  
+ 2407  
+ 2417  
+ 2421  
+ 2423  
+ 2437  
+ 2545  
+ 2586  
+ 2793  
+ 3035  
+ 3053  
+ 3060  
+ 3067  
+ 3093  
+ 3420  
+ 3548  
+ 3721  
+ 4118    4400  
+ 4824    4836    4838    4845  
+ 4905  
+ 5107  
+ 5230  
+ 5272  	 5287  	 5290  	 5296  
+ 5509  
+ 5819  
+ 5836  
+ 6306  
+ 6410  
+ 6811    6829    6868  
+ 6903  	 6918  	 6926  	 6935  	 7128  
+ 7269  
+ 7345  
+ 7401  
+ 7465  
+ 7671  
+ 7689  
+ 7834  
+ 7979  
+ 8197  
+ 8202  
+ 8216  
+ 8221  
+ 8226  
+ 8484  
+ 8490  
+ 8548  
+ 8554  
+ 8791  
+ 8825  
+ 8902  
+ 8907  
+ 8918  
+ 8922  
+ 8975  
+ 9340  
+ 9349  
+ 9352  
+ 9473  
+ 9545  
+ 9751  
+ 9789  
+ 9965  
+ERROR 55: In file "./multibit_tspc.wdb" line 72:
++   The input line is too long.
++   Please split your line using continuation line '+'.
+ERROR 55: In file "./multibit_tspc.wdb" line 72:
++   The input line is too long.
++   Please split your line using continuation line '+'.
+
+End of file 
+
+
+***** 39  error(s). 
+***** 4  warning(s). 
+
+
+***** GENERATION ...
+
+
+***** 39  error(s). 
+***** 4  warning(s). 
+
+
+INFORMATION ABOUT COMPILATION 
+
+
+Memory space allocated (MB):    240
+0 elements
+0 nodes 
+0 input signals
+
+Check your input netlist...
+
+***>MESSAGE SUMMARY: 39 errors, 4 warnings
+
+***>GLOBAL CPU TIME 0s 040ms <***
+
+
+***>GLOBAL ELAPSED TIME 1s <***
+
+
+  Job started at  8-Nov-2025 00:57:38
+  Job end at      8-Nov-2025 00:57:39
+
+  Run on edatools-server2.iiitd.edu.in (Linux 2.6.32-754.35.1.el6.x86_64)
+

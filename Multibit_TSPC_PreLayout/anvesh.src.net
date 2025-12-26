@@ -1,0 +1,92 @@
+************************************************************************
+* auCdl Netlist:
+*
+* Library Name:  2B
+* Top Cell Name: detff
+* View Name:     schematic
+* Netlisted on:  Nov  5 20:49:05 2025
+************************************************************************
+
+*.BIPOLAR
+*.RESI = 2000
+*.RESVAL
+*.CAPVAL
+*.DIOPERI
+*.DIOAREA
+*.EQUATION
+*.SCALE METER
+*.MEGA
+.PARAM
+
+
+
+************************************************************************
+* Library Name: 2B
+* Cell Name:    detff
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT detff CK CKL D Gnd QB Vdd
+*.PININFO CK:I D:I Vdd:I CKL:O QB:O Gnd:B
+XM36 QB net066 Gnd Gnd nsvtlp w=0.405 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM26 net066 net0102 Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM25 net038 CKL net0102 Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM23 net028 CKB net0102 Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM33 net046 CKL net062 Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM30 net062 net038 Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM16 net038 net046 Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM29 net075 net028 Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM28 net068 CKB net075 Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM10 net028 net068 Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM9 net016 CKB net046 Gnd nsvtlp w=0.135 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM8 net016 CKL net068 Gnd nsvtlp w=0.135 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM4 net016 D Gnd Gnd nsvtlp w=0.135 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM1 CKL CKB Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM0 CKB CK Gnd Gnd nsvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM37 QB net066 Vdd Vdd psvtlp w=0.81 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM27 net066 net0102 Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM24 net038 CKB net0102 Vdd psvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM22 net028 CKL net0102 Vdd psvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM35 net085 net038 Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM34 net046 CKB net085 Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM17 net038 net046 Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM31 net093 net028 Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM32 net068 CKL net093 Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM11 net028 net068 Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM7 net016 CKB net068 Vdd psvtlp w=0.135 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM6 net016 CKL net046 Vdd psvtlp w=0.135 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM5 net016 D Vdd Vdd psvtlp w=0.27 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM3 CKL CKB Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+XM2 CKB CK Vdd Vdd psvtlp w=0.54 l=0.06 nfing=1 sense=0 ngcon=1 m=1
++ accurateFlow=0
+CC0 QB Gnd 20f
+.ENDS

@@ -1,0 +1,50 @@
+
+
+* Metastability Window Calculation for TSPC D Flip-Flop (1.08V, 125°C)
+
+.include /modelfile_65nm/minNminP.cir
+.include tspc.src.net
+
+X1 clk d1 d2 d3 d4 gnd q1 q2 q3 q4 vdd multi_bit_tspc 
+
+.global VDD gnd
+.OPTION EPS=1e-5
+
+C out gnd 20f 
+
+.param SUPPLY = 1.08
+.param tend = 50n
+*.param delta = 0p
+*.step param delta 0p 100p 50p  
+.TEMP = 125
+
+* Voltage sources
+VDD vdd 0 SUPPLY 
+VSS gnd 0 0      
+V_in in gnd PULSE(0 SUPPLY 0n 10p 10p 7.5n 15n)  
+VCLK CLK gnd PULSE(0 SUPPLY 0n 10p 10p 5n 10n)  
+
+* Probes to monitor voltages
+.probe v(*) v(x1.*)  
+.probe i(*)       
+
+* Clock to out delay measurements
+*.measure tran tclk_q TRIG v(CLK) VAL='SUPPLY/2' RISE=1 TARG v(out) VAL='SUPPLY/2' RISE=1
+
+* Setup time measurement
+*.measure tran setup_time TRIG v(CLK) VAL='SUPPLY/2' RISE=2 TARG v(in) VAL='SUPPLY/2' FALL=2
+
+* Hold time measurement
+*.measure tran hold_time TRIG v(CLK) VAL='SUPPLY/2' RISE=1 TARG v(in) VAL='SUPPLY/2' FALL=1
+
+* Rising propagation delay (from CLK to out)
+.measure tran tplh TRIG v(CLK) VAL='SUPPLY/2' RISE=3 TARG v(out) VAL='SUPPLY/2' RISE=1
+
+* Falling propagation delay (from CLK to out)
+.measure tran tphl TRIG v(CLK) VAL='SUPPLY/2' RISE=2 TARG v(out) VAL='SUPPLY/2' FALL= 1
+
+* Delay
+.measure TRAN delay param = ('tplh+tphl'/2)
+
+.tran 10p tend  
+.end 

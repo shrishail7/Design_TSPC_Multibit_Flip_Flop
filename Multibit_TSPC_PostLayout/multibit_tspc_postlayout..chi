@@ -1,0 +1,22 @@
+  Run on edatools-server2.iiitd.edu.in (Linux 2.6.32-754.35.1.el6.x86_64)
+
+
+***** SYSTEM INFORMATION ...
+
+*** User  : shrishail25147@edatools-server2.iiitd.edu.in
+*** OS    : Red Hat Enterprise Linux Server release 6.10 (Santiago) [VCO = aol]
+*** CPU   :
+    Intel(R) Xeon(R) Gold 6354 CPU @ 3.00GHz
+    Number of physical processors     : 2
+    Hyper-Threading Technology        : enabled
+    Number of cpu cores               : 36
+    Number of logical processors      : 72
+*** Freq  : 3600.000MHz
+*** Cache : 39936 KB
+*** MEM   : 528955884 kB
+*** Date  : Sat Nov  8 03:43:02 2025
+
+/mentor/AMS/aol/bin/eldo_64.exe -i multibit_tspc_postlayout. 
+
+ERROR 1: Unable to open file multibit_tspc_postlayout.
++   No such file or directory

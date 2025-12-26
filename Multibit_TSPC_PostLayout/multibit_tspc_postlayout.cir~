@@ -1,0 +1,319 @@
+
+
+
+* HSPICE Deck for 4-bit TSPC D Flip-Flop
+* Testbench to measure propagation delays  
+
+*======================================================================
+* INCLUDES
+*======================================================================
+* Include the 65nm process model file (adjust path if necessary)
+.include /modelfile_65nm/minNminP.cir
+
+* Include the 4-bit TSPC netlist you provided
+.include multi_bit_tspc.pex.spi
+
+*======================================================================
+* TOP LEVEL AND PARAMETERS
+*======================================================================
+.global vdd gnd
+.OPTION EPS=1e-5
+
+.param SUPPLY = 1.08
+.param tend = 150n
+.TEMP = 125
+.param min_Supply = 'SUPPLY*0.3'
+.param max_Supply = 'SUPPLY*0.7'
+
+*======================================================================
+* CIRCUIT INSTANTIATION
+*======================================================================
+* Instantiate the 4-bit TSPC subcircuit from your .src.net file
+* .SUBCKT multi_bit_tspc clk d1 d2 d3 d4 gnd q1 q2 q3 q4 vdd
+X1 clk d1 d2 d3 d4 gnd q1 q2 q3 q4 vdd multi_bit_tspc
+
+* Add load capacitors to each output for realistic loading
+C1 q1 gnd 20f
+C2 q2 gnd 20f
+C3 q3 gnd 20f
+C4 q4 gnd 20f
+
+*======================================================================
+* VOLTAGE SOURCES (STIMULUS)
+*======================================================================
+* Power Supplies
+Vdd vdd 0 SUPPLY
+Vgnd gnd 0 0
+
+* Clock Signal (10ns period, 100MHz
+Vclk clk gnd PULSE(0 SUPPLY 0n 10p 10p 5n 10n)
+
+* Data Inputs - Provide different patterns to test each flip-flop
+*  (low_voltage high_voltage starting_delay rise_time fall_time on_pulse_width time_period)
+*                lv hv    sd  rt  ft  pw  tp
+
+
+*** 
+*======================================================================
+* 		INPUT SIGNALS
+*======================================================================
+ Vd1 d1 gnd PULSE(0 SUPPLY 2n 10p 10p 7.5n 15n)  * Data pulse for FF1
+ Vd2 d2 gnd PULSE(0 SUPPLY 8n 10p 10p 10n 20n)  * Data pulse for FF2
+ Vd3 d3 gnd PULSE(0 SUPPLY 12n 10p 10p 13n 26n)  * Data pulse for FF3
+ Vd4 d4 gnd PULSE(0 SUPPLY 18n 10p 10p 10n 20n)  * Data pulse for FF4
+
+
+*======================================================================
+* ANALYSIS AND MEASUREMENTS
+*======================================================================
+* Probes for waveform viewing
+.probe v(*) v(x1.*) I(*)
+.probe i(*)
+
+
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+* --------------------------------------------------- Propagation Delay Measurements for Q1 --------------------------------------------------- 
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+*.param data_delay = 0n
+.param data_fall_time = 1.5n
+
+
+*---------------- Hold time ----------
+*.STEP PARAM data_delay <start> <end> < step >
+* .param data_delay = 0p
+* Vd1 d1 gnd PULSE(0 SUPPLY '9n+ data_delay' 70p 70p 7.5n 15n)  * Data pulse for FF1
+* .STEP PARAM data_delay 2n 0n -50p
+
+
+
+*---------------- SetUp time ----------
+*  .STEP PARAM data_delay <start> <end> < step >
+* .param data_delay = 0n
+* Vd1 d1 gnd PULSE(0 SUPPLY 'data_delay' 70p 70p 9n 15n)  * Data pulse for FF1
+* .STEP PARAM data_delay 0n 2n 100p
+
+*Vd1 d1 gnd PULSE(0 SUPPLY 1n 10p 10p 7.5n 15n)  * Data pulse for FF1
+.measure  tran  tplh_q1 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q1) VAL='SUPPLY/2' RISE=1
+.measure  tran  tphl_q1 TRIG v(clk) VAL='SUPPLY/2' RISE=4 TARG v(q1) VAL='SUPPLY/2' FALL=2
+.measure  TRAN  clk_to_q1_delay param = '(tplh_q1 + tphl_q1) / 2'
+
+.measure  tran DELAY_CLK_D TRIG v(clk) VAL='SUPPLY/2' RISE=2 TARG v(d1) VAL='SUPPLY/2' FALL=1
+
+
+
+
+
+* --- Power Measurements for d1 and Q1 ---
+
+* 1. Total Average Power
+* .measure TRAN avg_current_total_Q1 AVG I(VD1) FROM=17n TO=77n
+* .measure TRAN total_average_power_Q1 PARAM='ABS(avg_current_total_Q1 * SUPPLY)'
+
+
+* 2. Static (Leakage) Power
+
+* .measure TRAN avg_current_static_Q1 AVG I(VD1) FROM=148.06n TO=150n
+* .measure lekage_current_Q1 param = 'ABS(avg_current_static_Q1)'
+
+* Average static power is the average of these two leakage states (for 50% duty cycle).
+* .measure TRAN static_power_Q1 PARAM='ABS(lekage_current_Q1 * SUPPLY)'
+
+
+* 3. Average Dynamic Power
+* Dynamic Power = Total Power - Static Power
+* .measure TRAN average_dynamic_power_Q1 PARAM= 'ABS(total_average_power_Q1 - static_power_Q1)'
+
+
+* =========================== Anvesh power Calculation ===============================
+
+
+********* Total ******************
+* .extract label=total_current_Q1 abs((integ(I(VD1),17.06n,31.97n))/(14.91n))
+* .measure TRAN total_power_Q1 PARAM='1.08*(total_current_Q1)'
+
+
+********* Static ******************
+* .extract label=leakage_current_high_Q1 abs((integ(I(VD1),5.25n,9.08n))/(9.08n-5.25n))
+* .extract label=leakage_current_low_Q1 abs((integ(I(VD1),9.60n,16.50n))/(16.50n-9.60n))
+* .measure TRAN static_power_Q1 PARAM='1.08 *(leakage_current_high_Q1 + leakage_current_low_Q1)'
+
+
+********* Dynamic ******************
+* .measure TRAN average_dynamic_power_Q1 PARAM='abs(total_power_Q1 - static_power_Q1)'
+
+
+* 4. Rise time Fall Time
+* .measure TRAN trise_Q1 TRIG v(q1) VAL=min_Supply RISE=1 TARG v(q1) VAL=max_Supply RISE=1
+* .measure TRAN tfall_Q1 TRIG v(q1) VAL=max_Supply FALL=2 TARG v(q1) VAL=min_Supply FALL=2
+
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+* --------------------------------------------------- Propagation Delay Measurements for Q2 --------------------------------------------------- 
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+* --- Propagation Delay Measurements for Q2 ---
+*.measure tran tplh_q2 TRIG v(clk) VAL='SUPPLY/2' RISE=2 TARG v(q2) VAL='SUPPLY/2' RISE=1
+*.measure tran tphl_q2 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q2) VAL='SUPPLY/2' FALL=2
+*.measure TRAN clk_to_q2_delay param = '(tplh_q2 + tphl_q2) / 2'
+
+
+* --- Power Measurements for d2 and Q2 ---
+
+* 1. Total Average Power
+*.measure TRAN avg_current_total_Q2 AVG I(VD2) FROM=58.00992n TO=78.00994n
+*.measure TRAN total_average_power_Q2 PARAM='ABS(avg_current_total_Q2 * SUPPLY)'
+
+
+* 2. Static (Leakage) Power
+
+*.measure TRAN avg_current_static_Q2 AVG I(VD2) FROM=2.0309n TO=5.00958n
+*.measure lekage_current_Q2 param = 'ABS(avg_current_static_Q2)'
+
+* Average static power is the average of these two leakage states (for 50% duty cycle).
+*.measure TRAN static_power_Q2 PARAM='ABS(lekage_current_Q2 * SUPPLY)'
+
+
+* 3. Average Dynamic Power
+* Dynamic Power = Total Power - Static Power
+*.measure TRAN average_dynamic_power_Q2 PARAM= 'ABS(total_average_power_Q2 - static_power_Q2)'
+
+
+* =========================== Anvesh power Calculation ===============================
+
+
+********* Total ******************
+* .extract label=total_current_Q2 abs((integ(I(VD2),28.3537n,47.8632n))/(47.8632n - 28.3537n ))
+* .measure TRAN total_power_Q2 PARAM='1.08*(total_current_Q2)'
+
+
+******** Static ******************
+* .extract label=leakage_current_high_Q2 abs((integ(I(VD2),28.35n,37.60n))/(37.60n-28.35n))
+* .extract label=leakage_current_low_Q2 abs((integ(I(VD2),38.54n,47.77n))/(47.77n-38.54n))
+* .measure TRAN static_power_Q2 PARAM='1.08 *(leakage_current_high_Q2 + leakage_current_low_Q2)'
+
+
+********* Dynamic ******************
+* .measure TRAN average_dynamic_power_Q2 PARAM='abs(total_power_Q2 - static_power_Q2)'
+
+
+* 4. Rise time Fall Time
+* .measure TRAN trise_Q2 TRIG v(q2) VAL=min_Supply RISE=1 TARG v(q2) VAL=max_Supply RISE=1
+* .measure TRAN tfall_Q2 TRIG v(q2) VAL=max_Supply FALL=2 TARG v(q2) VAL=min_Supply FALL=2
+
+
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+* --------------------------------------------------- Propagation Delay Measurements for Q3 --------------------------------------------------- 
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+* --- Propagation Delay Measurements for Q3 ---
+.measure tran tplh_q3 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q3) VAL='SUPPLY/2' RISE=1
+.measure tran tphl_q3 TRIG v(clk) VAL='SUPPLY/2' RISE=4 TARG v(q3) VAL='SUPPLY/2' FALL=2
+.measure TRAN clk_to_q3_delay param = '(tplh_q3 + tphl_q3) / 2'
+
+
+
+* --- Power Measurements for d3 and Q3 ---
+
+* 1. Total Average Power
+*.measure TRAN avg_current_total_Q3 AVG I(VD3) FROM=77.00971n TO=103.00996n
+*.measure TRAN total_average_power_Q3 PARAM='ABS(avg_current_total_Q3 * SUPPLY)'
+
+
+* 2. Static (Leakage) Power
+
+*.measure TRAN avg_current_static_Q3 AVG I(VD3) FROM=107.07143n TO=109.99928n
+*.measure lekage_current_Q3 param = 'ABS(avg_current_static_Q3)'
+
+* Average static power is the average of these two leakage states (for 50% duty cycle).
+*.measure TRAN static_power_Q3 PARAM='ABS(lekage_current_Q3 * SUPPLY)'
+
+
+* 3. Average Dynamic Power
+* Dynamic Power = Total Power - Static Power
+*.measure TRAN average_dynamic_power_Q3 PARAM= 'ABS(total_average_power_Q3 - static_power_Q3)'
+
+
+* =========================== Anvesh power Calculation ===============================
+
+
+********* Total ******************
+ .extract label=total_current_Q3 abs((integ(I(VD3),12.65n,37.60n))/(37.60n - 12.65n))
+ .measure TRAN total_power_Q3 PARAM='1.08*(total_current_Q3)'
+
+
+********* Static ******************
+ .extract label=leakage_current_high_Q3 abs((integ(I(VD3),12.65n,24.1025n))/(24.1025n-12.65n))
+ .extract label=leakage_current_low_Q3 abs((integ(I(VD3),26.068n,37.60n))/(37.60n-26.068n))
+ .measure TRAN static_power_Q3 PARAM='1.08 *(leakage_current_high_Q3 + leakage_current_low_Q3)'
+
+
+********* Dynamic ******************
+ .measure TRAN average_dynamic_power_Q3 PARAM='abs(total_power_Q3 - static_power_Q3)'
+
+
+* 4. Rise time Fall Time
+* .measure TRAN trise_Q3 TRIG v(q3) VAL=min_Supply RISE=1 TARG v(q3) VAL=max_Supply RISE=1
+* .measure TRAN tfall_Q3 TRIG v(q3) VAL=max_Supply FALL=2 TARG v(q3) VAL=min_Supply FALL=2
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+* --------------------------------------------------- Propagation Delay Measurements for Q4 --------------------------------------------------- 
+* --------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+* --- Propagation Delay Measurements for Q4 ---
+*.measure tran tplh_q4 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q4) VAL='SUPPLY/2' RISE=1
+*.measure tran tphl_q4 TRIG v(clk) VAL='SUPPLY/2' RISE=4 TARG v(q4) VAL='SUPPLY/2' FALL=2
+*.measure TRAN clk_to_q4_delay param = '(tplh_q4 + tphl_q4) / 2'
+
+
+* --- Power Measurements for d3 and Q4 ---
+
+* 1. Total Average Power
+*.measure TRAN avg_current_total_Q4 AVG I(VD4) FROM=48.000997n TO=68.00933n
+*.measure TRAN total_average_power_Q4 PARAM='ABS(avg_current_total_Q4 * SUPPLY)'
+
+
+* 2. Static (Leakage) Power
+
+*.measure TRAN avg_current_static_Q4 AVG I(VD4) FROM=17.13675n TO=17.94872n
+*.measure lekage_current_Q4 param = 'ABS(avg_current_static_Q4)'
+
+* Average static power is the average of these two leakage states (for 50% duty cycle).
+*.measure TRAN static_power_Q4 PARAM='ABS(lekage_current_Q4 * SUPPLY)'
+
+
+* 3. Average Dynamic Power
+* Dynamic Power = Total Power - Static Power
+*.measure TRAN average_dynamic_power_Q4 PARAM= 'ABS(total_average_power_Q4 - static_power_Q4)'
+
+
+* =========================== Anvesh power Calculation ===============================
+
+
+********* Total ******************
+*.extract label=total_current_Q4 abs((integ(I(VD4),18.31n,37.43n))/(37.43n - 18.31n))
+*.measure TRAN total_power_Q4 PARAM='1.08*(total_current_Q4)'
+
+
+********* Static ******************
+*.extract label=leakage_current_high_Q4 abs((integ(I(VD4),18.3191n,27.45n))/(27.45n-18.3191n))
+*.extract label=leakage_current_low_Q4 abs((integ(I(VD4),28.80n,37.62n))/(37.62n-28.80n))
+*.measure TRAN static_power_Q4 PARAM='1.08 *(leakage_current_high_Q4 + leakage_current_low_Q4)'
+
+
+********* Dynamic ******************
+*.measure TRAN average_dynamic_power_Q4 PARAM='abs(total_power_Q4 - static_power_Q4)'
+
+
+
+* 4. Rise time Fall Time
+*.measure TRAN trise_Q4 TRIG v(q4) VAL=min_Supply RISE=1 TARG v(q4) VAL=max_Supply RISE=1
+*.measure TRAN tfall_Q4 TRIG v(q4) VAL=max_Supply FALL=2 TARG v(q4) VAL=min_Supply FALL=2
+
+
+
+* Transient Analysis
+.tran 10p tend
+
+.end

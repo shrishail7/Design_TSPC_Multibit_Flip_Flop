@@ -1,0 +1,70 @@
+.include /modelfile_65nm/maxNmaxP.cir
+.include anvesh.src.net
+.param SUPPLY = 1.32
+.param T_CLK = 10n
+.param T_RISE_FALL = 60p
+.param T_END = 60n
+.TEMP -40
+.param t_d_delay = 0p
+
+*this is for setup and hold
+.step param t_d_delay 200p 0p -2p
+
+
+.option post    
+.probe tran v(*) i(*)
+
+XU1 CLK_IN DUMMY_CKL D_IN GND  Q_OUT VDD detff
+
+
+VVDD VDD 0 'SUPPLY'
+VGND GND 0 0
+
+VCLK CLK_IN GND PULSE(0 SUPPLY 0 T_RISE_FALL T_RISE_FALL 'T_CLK/2 - T_RISE_FALL' T_CLK)
+*This is for static power analysis
+*VCLK CLK_IN GND 0
+
+* Data Signal: Changes relative to the second clock edge to test setup time.
+VD D_IN GND PULSE(0 SUPPLY 'T_CLK + t_d_delay' T_RISE_FALL T_RISE_FALL 'T_CLK/2' '2*T_CLK')
+*This is for static power analysis
+*VD D_IN GND 0
+
+* ====== A. CLK-to-Q Propagation Delay (Non-Inverting) ======
+* This is now t_cq_hl (Clock-to-Q High-to-Low)
+.measure tran t_cq_hl
++ TRIG v(CLK_IN) VAL='SUPPLY/2' FALL=2
++ TARG v(Q_OUT) VAL='SUPPLY/2' FALL=1
+
+* For FALLING clock edge -> Q rises (because D was 1)
+.measure tran t_cq_lh
++ TRIG v(CLK_IN) VAL='SUPPLY/2' RISE=2
++ TARG v(Q_OUT) VAL='SUPPLY/2' RISE=1
+
+.measure tran d_to_clk
++ TRIG v(D_IN) VAL='SUPPLY/2' RISE=1
++ TARG v(CLK_IN) VAL='SUPPLY/2' RISE=2
+
+
+*========DELAY=======*
+.measure tran CLK_to_Q param='(t_cq_hl+t_cq_lh)/2'
+
+
+
+* ====== C. Power Measurement ======
+.measure tran P_avg AVG 'V(VDD)*(-I(VVDD))' FROM=0n TO=T_END
+
+.measure tran trise
++ TRIG v(Q_OUT) VAL='0.1*SUPPLY' RISE=1
++ TARG v(Q_OUT) VAL='0.9*SUPPLY' RISE=1
+
+.measure tran tfall
++ TRIG v(Q_OUT) VAL='0.9*SUPPLY' FALL=1
++ TARG v(Q_OUT) VAL='0.1*SUPPLY' FALL=1
+
+
+
+* --- 6. Simulation Command ---
+
+.tran 1p T_END
+
+.end

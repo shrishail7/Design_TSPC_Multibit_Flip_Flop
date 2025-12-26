@@ -1,0 +1,3 @@
+START report: Sun Nov  9 00:11:33 2025 
+** Error: (eldo - 63)  In file "./anvesh.cir" line 2:
++   Unable to include file "detff2.src.net".

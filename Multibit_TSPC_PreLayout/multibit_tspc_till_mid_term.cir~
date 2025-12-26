@@ -1,0 +1,91 @@
+
+
+
+* HSPICE Deck for 4-bit TSPC D Flip-Flop
+* Testbench to measure propagation delays
+
+*======================================================================
+* INCLUDES
+*======================================================================
+* Include the 65nm process model file (adjust path if necessary)
+.include /modelfile_65nm/minNminP.cir
+
+* Include the 4-bit TSPC netlist you provided
+.include multibit_tspc.src.net
+
+*======================================================================
+* TOP LEVEL AND PARAMETERS
+*======================================================================
+.global vdd gnd
+.OPTION EPS=1e-5
+
+.param SUPPLY = 1.08
+.param tend = 150n
+.TEMP = 125
+
+*======================================================================
+* CIRCUIT INSTANTIATION
+*======================================================================
+* Instantiate the 4-bit TSPC subcircuit from your .src.net file
+* .SUBCKT multi_bit_tspc clk d1 d2 d3 d4 gnd q1 q2 q3 q4 vdd
+X1 clk d1 d2 d3 d4 gnd q1 q2 q3 q4 vdd multi_bit_tspc
+
+* Add load capacitors to each output for realistic loading
+C1 q1 gnd 20f
+C2 q2 gnd 20f
+C3 q3 gnd 20f
+C4 q4 gnd 20f
+
+*======================================================================
+* VOLTAGE SOURCES (STIMULUS)
+*======================================================================
+* Power Supplies
+Vdd vdd 0 SUPPLY
+Vgnd gnd 0 0
+
+* Clock Signal (10ns period, 100MHz
+Vclk clk gnd PULSE(0 SUPPLY 0n 10p 10p 5n 10n)
+
+* Data Inputs - Provide different patterns to test each flip-flop
+*  (low_voltage high_voltage starting_delay rise_time fall_time on_pulse_width time_period)
+*                lv hv    sd  rt  ft  pw  tp
+
+
+*** pulse vd1
+*Vd1 d1 gnd PULSE(0 SUPPLY 2n 10p 10p 7.5n 15n)  * Data pulse for FF1
+*Vd2 d2 gnd PULSE(0 SUPPLY 8n 10p 10p 10n 20n)  * Data pulse for FF2
+*Vd3 d3 gnd PULSE(0 SUPPLY 12n 10p 10p 13n 26n)  * Data pulse for FF3
+*Vd4 d4 gnd PULSE(0 SUPPLY 18n 10p 10p 10n 20n)  * Data pulse for FF4
+
+*======================================================================
+* ANALYSIS AND MEASUREMENTS
+*======================================================================
+* Probes for waveform viewing
+.probe v(*) v(x1.*)
+
+* --- Propagation Delay Measurements for Q1 ---
+*.measure  tran  tplh_q1 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q1) VAL='SUPPLY/2' RISE=1
+*.measure  tran  tphl_q1 TRIG v(clk) VAL='SUPPLY/2' RISE=4 TARG v(q1) VAL='SUPPLY/2' FALL=2
+*.measure  TRAN  clk_to_q1_delay param = '(tplh_q1 + tphl_q1) / 2'
+
+
+
+* --- Propagation Delay Measurements for Q2 ---
+*.measure tran tplh_q2 TRIG v(clk) VAL='SUPPLY/2' RISE=2 TARG v(q2) VAL='SUPPLY/2' RISE=1
+*.measure tran tphl_q2 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q2) VAL='SUPPLY/2' FALL=2
+*.measure TRAN clk_to_q2_delay param = '(tplh_q2 + tphl_q2) / 2'
+
+* --- Propagation Delay Measurements for Q3 ---
+*.measure tran tplh_q3 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q3) VAL='SUPPLY/2' RISE=1
+*.measure tran tphl_q3 TRIG v(clk) VAL='SUPPLY/2' RISE=4 TARG v(q3) VAL='SUPPLY/2' FALL=2
+*.measure TRAN clk_to_q3_delay param = '(tplh_q3 + tphl_q3) / 2'
+
+* --- Propagation Delay Measurements for Q4 ---
+*.measure tran tplh_q4 TRIG v(clk) VAL='SUPPLY/2' RISE=3 TARG v(q4) VAL='SUPPLY/2' RISE=1
+*.measure tran tphl_q4 TRIG v(clk) VAL='SUPPLY/2' RISE=4 TARG v(q4) VAL='SUPPLY/2' FALL=2
+*.measure TRAN clk_to_q4_delay param = '(tplh_q4 + tphl_q4) / 2'
+
+* Transient Analysis
+.tran 10p tend
+
+.end

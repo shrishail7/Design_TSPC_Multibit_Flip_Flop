@@ -1,0 +1,75 @@
+START report: Sat Nov  8 00:57:38 2025 
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 9:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 3:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 10:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 13:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 14:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 15:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 16:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 18:
++   Line not consistent with language syntax.
+** Error: (eldo - 920)  In file "./multibit_tspc.wdb" line 17:
++   Unable to parse expression *F***5*J>**|***!*Q*B6****Z*. 
++   Expression starts by an operator in *F***5*J>**|***!*Q*B6****Z*
+
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 19:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 21:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 22:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 23:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 26:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 27:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 29:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 28:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 33:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 37:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 39:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 41:
++   Line not consistent with language syntax.
+** Error: (eldo - 920)  In file "./multibit_tspc.wdb" line 40:
++   Unable to parse expression *2*  . 
++   Expression starts by an operator in *2*
+
+** Error: (eldo - 920)  In file "./multibit_tspc.wdb" line 40:
++   Unable to parse expression *. 
++   error near sign '-' in *
+
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 43:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 56:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 55:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 57:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 62:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 69:
++   Line not consistent with language syntax.
+** Error: (eldo - 25)  In file "./multibit_tspc.wdb" line 72:
++   Line not consistent with language syntax.
+** Error: (eldo - 54)  In file "./multibit_tspc.wdb" line 70:
++   Syntax error parsing "I¼ª: Found ˜ while expecting a REAL value".
+** Error: (eldo - 55)  In file "./multibit_tspc.wdb" line 72:
++   The input line is too long.
++   Please split your line using continuation line '+'.
+** Error: (eldo - 55)  In file "./multibit_tspc.wdb" line 72:
++   The input line is too long.
++   Please split your line using continuation line '+'.
